@@ -1,0 +1,52 @@
+<project name="updateManager" default="run" basedir="." >
+
+        <property name="src" location="src/" />
+	    <property name="srcJSON" location="srcJSON/" />
+        <property name="build" location="bin/" />
+        <property name="lib" value="lib" />
+        <property name="jarList" value="${lib}/mysql-connector-java-5.0.8-bin.jar:${lib}/jetty.jar" />
+
+        <target name="help">
+        </target>
+
+        <target name="init" >
+                <mkdir dir="${build}"/>
+        </target>
+
+        <target name="compile" depends="init">
+                <javac includeantruntime="false" verbose="1" srcdir="${src}" debug="true" debuglevel="lines,vars,source" destdir="${build}" target="1.6" source="1.6" classpath=".:${jarList}" />
+        	    <javac includeantruntime="false" verbose="1" srcdir="${srcJSON}" debug="true" debuglevel="lines,vars,source" destdir="${build}" target="1.6" source="1.6" classpath=".:${jarList}" />
+        </target>
+
+	<target name="jar" depends="compile" >
+                <jar jarfile="Update_manager.jar" >
+                        <fileset dir="${build}" />
+                        <manifest>
+                                <attribute name="Class-Path" value=". ${jarList}" />
+                                <attribute name="Ant-Version" value="${ant.version}" />
+                                <attribute name="Main-Class" value="com.m2csolutions.manager.Manager" />
+                        </manifest>
+                </jar>
+        </target>
+
+	<target name="dist" depends="jar" >
+		<zip destfile="M2C_update_manager.zip" >
+			<fileset file="Update_manager.jar" />
+			<fileset file="db_update_manager.sql" />
+			<zipfileset dir="${lib}" prefix="lib" />
+		</zip>
+	</target>
+
+        <target name="run" depends="compile">
+                <java classname="com.m2csolutions.manager.Manager" classpath="${build}:${jarList}" />
+        </target>
+
+        <target name="clean" >
+                <delete>
+                        <fileset dir="${build}" />
+                        <file file="Update_manager.jar" />
+                        <file file="M2C_update_manager.zip" />
+                </delete>
+        </target>
+
+</project>
