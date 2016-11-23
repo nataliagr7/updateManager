@@ -5,6 +5,7 @@
         <property name="build" location="bin/" />
         <property name="lib" value="lib" />
         <property name="jarList" value="${lib}/mysql-connector-java-5.0.8-bin.jar:${lib}/jetty.jar" />
+	    <property name="jar2List" value="${lib}/mysql-connector-java-5.0.8-bin.jar ${lib}/jetty.jar" />
 
         <target name="help">
         </target>
@@ -14,15 +15,16 @@
         </target>
 
         <target name="compile" depends="init">
-                <javac includeantruntime="false" verbose="1" srcdir="${src}" debug="true" debuglevel="lines,vars,source" destdir="${build}" target="1.6" source="1.6" classpath=".:${jarList}" />
         	    <javac includeantruntime="false" verbose="1" srcdir="${srcJSON}" debug="true" debuglevel="lines,vars,source" destdir="${build}" target="1.6" source="1.6" classpath=".:${jarList}" />
+                <javac includeantruntime="false" verbose="1" srcdir="${src}" debug="true" debuglevel="lines,vars,source" destdir="${build}" target="1.6" source="1.6" classpath=".:${jarList}" />
+        	    
         </target>
 
 	<target name="jar" depends="compile" >
                 <jar jarfile="Update_manager.jar" >
                         <fileset dir="${build}" />
                         <manifest>
-                                <attribute name="Class-Path" value=". ${jarList}" />
+                                <attribute name="Class-Path" value=". ${jar2List}" />
                                 <attribute name="Ant-Version" value="${ant.version}" />
                                 <attribute name="Main-Class" value="com.m2csolutions.manager.Manager" />
                         </manifest>

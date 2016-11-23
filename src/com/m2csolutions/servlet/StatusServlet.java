@@ -162,12 +162,12 @@ public class StatusServlet extends HttpServlet{
 								JSONObject obj = new JSONObject();
 								obj.put("date", actualDateString);
 
-								FileWriter writeJson = new FileWriter("/opt/m2csolutions/api/gw/correctDate/" + actualDateString + ".json");
+								FileWriter writeJson = new FileWriter("/home/natalia/prueba/" + actualDateString + ".json"); ///opt/m2csolutions/api/gw/correctDate/
 								writeJson.write(obj.toString());
 								writeJson.flush();
 								writeJson.close();
 
-								File file = new File("/opt/m2csolutions/api/gw/correctDate/" + actualDateString + ".json");
+								File file = new File("/home/natalia/prueba/" + actualDateString + ".json"); ///opt/m2csolutions/api/gw/correctDate/
 
 								String fileName = file.getAbsolutePath();
 								LOG.info("Path is: " + fileName);
