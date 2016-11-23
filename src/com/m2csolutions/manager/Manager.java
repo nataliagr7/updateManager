@@ -9,7 +9,6 @@ import java.util.logging.Logger;
 import org.eclipse.jetty.server.Server;
 import org.eclipse.jetty.servlet.ServletContextHandler;
 import org.eclipse.jetty.servlet.ServletHolder;
-import org.eclipse.jetty.server.handler.*;
 
 import com.m2csolutions.lib.sql.SqlConnection;
 import com.m2csolutions.servlet.StatusServlet;

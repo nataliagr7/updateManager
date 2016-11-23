@@ -18,8 +18,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.swing.JOptionPane;
 
-import org.json.JSONException;
 import org.json.JSONObject;
+import org.json.JSONException;
 
 import com.m2csolutions.manager.Manager;
 import com.m2csolutions.sql.SqlPacketSw;
@@ -101,7 +101,7 @@ public class UpdateServlet extends HttpServlet{
 						if(this.manager.getNotUpdate(hostname) || this.manager.getForceUpdate(hostname)){
 							LOG.info("Looking for new version");
 
-							File directory = new File("/home/natalia/prueba/"); ///opt/m2csolutions/api/gw/swVersion/
+							File directory = new File("/opt/m2csolutions/api/gw/swVersion/"); 
 							String nombreFichero = softwareName + ".zip";
 							if(this.manager.searchNewVersion(nombreFichero,  directory)==true){
 								LOG.info("File was found!");
